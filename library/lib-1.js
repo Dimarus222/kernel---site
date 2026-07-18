@@ -64,7 +64,7 @@ KERNEL_DATA.addLibrary({
             '<li><a href="https://fstec.ru/dokumenty/vse-dokumenty" target="_blank">Все документы ФСТЭК России</a></li>',
             '<li><a href="https://bdu.fstec.ru/" target="_blank">Банк данных угроз ФСТЭК</a></li>',
             '<li><a href="https://www.consultant.ru/" target="_blank">КонсультантПлюс — база законов</a></li>',
-            '<li><a href="https://docs.cntd.ru/" target="_blank">Техэксперт — ГОСТы и стандарты</a></li>',
+            '<li><a href="https://protect.gost.ru/" target="_blank">Росстандарт — ГОСТы и стандарты</a></li>',
             '</ul>'
         ].join('');
     }
