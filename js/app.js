@@ -90,6 +90,7 @@ function toggleMenu() {
     btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
 }
     return {
+        toggleMenu: toggleMenu,
         showSection: showSection,
         openNote: openNote,
         closeNote: closeNote,
