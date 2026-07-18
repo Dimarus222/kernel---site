@@ -356,6 +356,19 @@ body {
 .note-content ul, .note-content ol { margin-bottom: 14px; padding-left: 22px; }
 .note-content li { margin-bottom: 6px; }
 
+.note-content a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: all var(--transition);
+    padding-bottom: 1px;
+}
+
+.note-content a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text-secondary);
+}
+
 .code-block {
     position: relative;
     margin: 20px 0;
@@ -412,6 +425,19 @@ body {
     background: var(--bg-secondary);
     margin-top: auto;
     flex-shrink: 0;
+}
+
+.footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: all var(--transition);
+    padding-bottom: 1px;
+}
+
+.footer a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text-secondary);
 }
 
 .hljs { background: transparent !important; padding: 0 !important; }
