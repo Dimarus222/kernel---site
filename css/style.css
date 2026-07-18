@@ -464,11 +464,12 @@ body {
     .logo-sub { display: none; }
     .theme-btn { font-size: 12px; padding: 6px 10px; }
 
-    /* Меню — выезжающая панель */
+    /* Меню */
     .nav {
+        display: none;
         position: fixed;
         top: 0;
-        right: -280px;
+        right: 0;
         width: 280px;
         height: 100vh;
         height: 100dvh;
@@ -477,13 +478,18 @@ body {
         flex-direction: column;
         gap: 2px;
         padding: 72px 16px 20px;
-        transition: right 0.3s ease;
         z-index: 100;
         box-shadow: -4px 0 24px rgba(0,0,0,0.15);
         overflow-y: auto;
+        animation: slideIn 0.3s ease;
     }
 
-    .nav.open { right: 0; }
+    .nav.open { display: flex; }
+
+    @keyframes slideIn {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
 
     .nav-btn {
         width: 100%;
@@ -522,7 +528,6 @@ body {
 
     .nav {
         width: 260px;
-        right: -260px;
         padding: 60px 12px 16px;
     }
 
@@ -553,4 +558,4 @@ body {
 @media (min-width: 1800px) {
     .grid { grid-template-columns: repeat(4, 1fr); }
     .note-content { max-width: 900px; font-size: 17px; }
-    }
+            }
