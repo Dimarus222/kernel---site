@@ -1,7 +1,6 @@
 var App = (function() {
     var currentSection = 'notes';
     var currentNote = null;
-    var isDark = false;
     var currentTheme = 'dark';
 
     function showSection(sectionName) {
@@ -13,7 +12,6 @@ var App = (function() {
         document.querySelectorAll('.nav-btn').forEach(function(btn) {
             btn.classList.toggle('active', btn.getAttribute('data-section') === sectionName);
         });
-        // Закрываем бургер-меню при переходе
         var nav = document.querySelector('.nav');
         var overlay = document.getElementById('navOverlay');
         var btn = document.getElementById('burgerBtn');
@@ -50,8 +48,14 @@ var App = (function() {
     // ===== ФУНКЦИИ ВЫБОРА ТЕМ =====
     function selectTheme(theme) {
         currentTheme = theme;
-        var link = document.getElementById('theme-style');
-        link.href = 'css/theme-' + theme + '.css';
+        
+        // Убираем все классы тем с body
+        document.body.classList.remove('theme-light', 'theme-matrix', 'theme-amber', 'theme-forest', 'theme-ocean', 'theme-sunset');
+        
+        // Добавляем нужный класс (кроме dark — он по умолчанию)
+        if (theme !== 'dark') {
+            document.body.classList.add('theme-' + theme);
+        }
         
         // Обновляем активный класс в панели выбора
         document.querySelectorAll('.theme-option').forEach(function(el) {
@@ -72,13 +76,10 @@ var App = (function() {
         themeBtn.textContent = icons[theme] || '🎨';
         
         localStorage.setItem('kernel-theme', theme);
-        
-        // Закрываем панель выбора
         closeThemePicker();
     }
 
     function toggleTheme() {
-        // Переключаем между dark и light для совместимости
         if (currentTheme === 'dark') {
             selectTheme('light');
         } else {
@@ -129,7 +130,7 @@ var App = (function() {
         renderCards('notesGrid', KERNEL_DATA.notes);
         renderCards('practiceGrid', KERNEL_DATA.practice);
         renderCards('libraryGrid', KERNEL_DATA.library);
-        console.log('KERNEL v3.0 — 7 themes');
+        console.log('KERNEL v3.0 — 7 themes in one file');
     }
 
     function escapeHtml(text) {
