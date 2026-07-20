@@ -243,6 +243,13 @@ body {
 .theme-option:hover { border-color: var(--accent); transform: translateY(-2px); }
 .theme-option.active { border-color: var(--accent); background: var(--bg); }
 
+.theme-name { font-weight: 600; font-size: 14px; color: var(--text); margin-top: 4px; }
+.theme-desc { font-size: 11px; color: var(--text-secondary); }
+
+
+/* ============================================================
+   ===== ПРЕВЬЮ ТЕМ (ВСЕГДА СТАТИЧНЫЕ) =====
+   ============================================================ */
 .theme-preview {
     display: flex;
     align-items: center;
@@ -252,47 +259,82 @@ body {
     width: 100%;
     justify-content: center;
 }
-.theme-preview .preview-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-.theme-preview .preview-line { height: 4px; width: 24px; border-radius: 4px; }
+.theme-preview .preview-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.theme-preview .preview-line {
+    height: 4px;
+    width: 24px;
+    border-radius: 4px;
+}
 
-.theme-name { font-weight: 600; font-size: 14px; color: var(--text); margin-top: 4px; }
-.theme-desc { font-size: 11px; color: var(--text-secondary); }
-
-/* ===== ПРЕВЬЮ ===== */
-.theme-preview-dark { background: #0d1117; border: 1px solid #223047; }
+/* Dark — всегда тёмный */
+.theme-preview-dark {
+    background: #0d1117;
+    border: 1px solid #223047;
+}
 .theme-preview-dark .preview-dot { background: #3ddc97; }
 .theme-preview-dark .preview-line { background: #d9e2ec; }
 .theme-preview-dark .preview-line:last-child { background: #8496ab; }
 
-.theme-preview-light { background: #ffffff; border: 1px solid #e5e5e5; }
+/* Light — всегда светлый */
+.theme-preview-light {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+}
 .theme-preview-light .preview-dot { background: #2563eb; }
 .theme-preview-light .preview-line { background: #171717; }
 .theme-preview-light .preview-line:last-child { background: #737373; }
 
-.theme-preview-neon { background: #0a0a1a; border: 1px solid #ff00ff; }
+/* Neon — всегда неоновый */
+.theme-preview-neon {
+    background: #0a0a1a;
+    border: 1px solid #ff00ff;
+}
 .theme-preview-neon .preview-dot { background: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
 .theme-preview-neon .preview-line { background: #00ffff; box-shadow: 0 0 8px #00ffff; }
 .theme-preview-neon .preview-line:last-child { background: #ff00ff; }
 
-.theme-preview-retro { background: #f4e8d0; border: 1px solid #8b7355; }
+/* Retro — всегда винтажный */
+.theme-preview-retro {
+    background: #f4e8d0;
+    border: 1px solid #8b7355;
+}
 .theme-preview-retro .preview-dot { background: #8b4513; }
 .theme-preview-retro .preview-line { background: #5c4033; }
 .theme-preview-retro .preview-line:last-child { background: #8b7355; }
 
-.theme-preview-glass { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+/* Glass — всегда стеклянный */
+.theme-preview-glass {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+}
 .theme-preview-glass .preview-dot { background: #60a5fa; }
 .theme-preview-glass .preview-line { background: rgba(255,255,255,0.6); }
 .theme-preview-glass .preview-line:last-child { background: rgba(255,255,255,0.3); }
 
-.theme-preview-brutal { background: #f0f0f0; border: 3px solid #000000; }
+/* Brutal — всегда брутальный */
+.theme-preview-brutal {
+    background: #f0f0f0;
+    border: 3px solid #000000;
+}
 .theme-preview-brutal .preview-dot { background: #ff0000; }
 .theme-preview-brutal .preview-line { background: #000000; }
 .theme-preview-brutal .preview-line:last-child { background: #666666; }
 
-.theme-preview-nature { background: #1a2a1a; border: 1px solid #4ade80; }
+/* Nature — всегда природный */
+.theme-preview-nature {
+    background: #0f1a0f;
+    border: 1px solid #4ade80;
+}
 .theme-preview-nature .preview-dot { background: #4ade80; }
 .theme-preview-nature .preview-line { background: #86efac; }
 .theme-preview-nature .preview-line:last-child { background: #22c55e; }
+
 
 /* ===== MAIN ===== */
 .main {
@@ -512,7 +554,6 @@ body {
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 body { background: var(--bg); color: var(--text); }
-body.dark-theme .header { background: rgba(13,17,23,0.85); }
 
 
 /* ============================================================
@@ -538,7 +579,6 @@ body.light-theme {
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 body.light-theme { background: var(--bg); color: var(--text); }
-body.light-theme .header { background: rgba(255,255,255,0.85); }
 
 
 /* ============================================================
@@ -564,7 +604,7 @@ body.neon-theme {
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 body.neon-theme { background: var(--bg); color: var(--text); }
-body.neon-theme .header { background: rgba(10,10,26,0.9); border-color: #3333aa; }
+body.neon-theme .header { border-color: #3333aa; }
 body.neon-theme .card { border-color: #3333aa; }
 body.neon-theme .card:hover { box-shadow: 0 0 40px rgba(255,0,255,0.3), 0 0 80px rgba(0,255,255,0.1); }
 body.neon-theme .card::before { background: linear-gradient(135deg, #ff00ff, #00ffff); }
@@ -601,8 +641,8 @@ body.retro-theme {
     --font-content: 'Georgia', 'Times New Roman', serif;
 }
 body.retro-theme { background: var(--bg); color: var(--text); }
-body.retro-theme .header { background: rgba(244,232,208,0.92); border-color: #c8b898; }
-body.retro-theme .card { border-color: #c8b898; background: #f0e4cc; }
+body.retro-theme .header { border-color: #c8b898; }
+body.retro-theme .card { border-color: #c8b898; }
 body.retro-theme .card:hover { box-shadow: 0 4px 20px rgba(139,69,19,0.15); }
 body.retro-theme .tag { border-color: #c8b898; background: #dcc8b0; color: #5c4033; font-family: 'Courier New', monospace; }
 body.retro-theme .note-meta { border-color: #c8b898; }
@@ -635,8 +675,8 @@ body.glass-theme {
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 body.glass-theme { background: var(--bg); color: var(--text); }
-body.glass-theme .header { background: rgba(10,22,40,0.7); backdrop-filter: blur(20px); border-color: rgba(255,255,255,0.08); }
-body.glass-theme .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-color: rgba(255,255,255,0.08); }
+body.glass-theme .header { backdrop-filter: blur(20px); border-color: rgba(255,255,255,0.08); }
+body.glass-theme .card { backdrop-filter: blur(12px); border-color: rgba(255,255,255,0.08); }
 body.glass-theme .card:hover { box-shadow: 0 8px 40px rgba(96,165,250,0.15); border-color: rgba(96,165,250,0.3); }
 body.glass-theme .card::before { background: linear-gradient(135deg, rgba(96,165,250,0.3), rgba(139,92,246,0.3)); }
 body.glass-theme .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); color: #94a3b8; }
@@ -670,8 +710,8 @@ body.brutal-theme {
     --font-content: 'Times New Roman', serif;
 }
 body.brutal-theme { background: var(--bg); color: var(--text); }
-body.brutal-theme .header { background: #f0f0f0; border-bottom: 3px solid #000000; }
-body.brutal-theme .card { border: 2px solid #000000; border-radius: 0; background: #ffffff; box-shadow: none; }
+body.brutal-theme .header { border-bottom: 3px solid #000000; }
+body.brutal-theme .card { border: 2px solid #000000; border-radius: 0; box-shadow: none; }
 body.brutal-theme .card:hover { transform: none; box-shadow: none; border-color: #ff0000; }
 body.brutal-theme .card::before { display: none; }
 body.brutal-theme .tag { border-radius: 0; background: #000000; color: #ffffff; border: none; }
@@ -709,7 +749,7 @@ body.nature-theme {
     --font-content: 'Georgia', 'Times New Roman', serif;
 }
 body.nature-theme { background: var(--bg); color: var(--text); }
-body.nature-theme .header { background: rgba(15,26,15,0.92); border-color: #1a3a1a; }
+body.nature-theme .header { border-color: #1a3a1a; }
 body.nature-theme .card { border-color: #1a3a1a; }
 body.nature-theme .card:hover { box-shadow: 0 4px 30px rgba(74,222,128,0.15); }
 body.nature-theme .tag { border-color: #1a3a1a; background: #1a3a1a; color: #86efac; }
@@ -822,4 +862,4 @@ body.nature-theme .nav-btn.active { border-color: #4ade80; }
 @media (min-width: 1800px) {
     .grid { grid-template-columns: repeat(4, 1fr); }
     .note-content { max-width: 900px; font-size: 17px; }
-       }
+                             }
