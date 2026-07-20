@@ -2,6 +2,7 @@ var App = (function() {
     var currentSection = 'notes';
     var currentNote = null;
     var isDark = false;
+    var currentTheme = 'dark';
 
     function showSection(sectionName) {
         currentSection = sectionName;
@@ -46,20 +47,58 @@ var App = (function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ===== ФУНКЦИИ ВЫБОРА ТЕМ =====
+    function selectTheme(theme) {
+        currentTheme = theme;
+        var link = document.getElementById('theme-style');
+        link.href = 'css/theme-' + theme + '.css';
+        
+        // Обновляем активный класс в панели выбора
+        document.querySelectorAll('.theme-option').forEach(function(el) {
+            el.classList.toggle('active', el.getAttribute('data-theme') === theme);
+        });
+        
+        // Обновляем кнопку темы
+        var themeBtn = document.getElementById('themeToggle');
+        var icons = {
+            'dark': '🌙',
+            'light': '☀️',
+            'matrix': '💚',
+            'amber': '🟡',
+            'forest': '🌿',
+            'ocean': '🌊',
+            'sunset': '🌅'
+        };
+        themeBtn.textContent = icons[theme] || '🎨';
+        
+        localStorage.setItem('kernel-theme', theme);
+        
+        // Закрываем панель выбора
+        closeThemePicker();
+    }
+
     function toggleTheme() {
-        isDark = !isDark;
-        document.body.classList.toggle('dark', isDark);
-        document.getElementById('hljs-light').disabled = isDark;
-        document.getElementById('hljs-dark').disabled = !isDark;
-        document.getElementById('themeToggle').textContent = isDark ? '☀️' : '🌙';
-        localStorage.setItem('kernel-theme', isDark ? 'dark' : 'light');
+        // Переключаем между dark и light для совместимости
+        if (currentTheme === 'dark') {
+            selectTheme('light');
+        } else {
+            selectTheme('dark');
+        }
     }
 
     function loadTheme() {
-        if (localStorage.getItem('kernel-theme') === 'dark') {
-            isDark = false;
-            toggleTheme();
-        }
+        var saved = localStorage.getItem('kernel-theme') || 'dark';
+        selectTheme(saved);
+    }
+
+    function openThemePicker() {
+        var overlay = document.getElementById('themePickerOverlay');
+        if (overlay) overlay.classList.add('open');
+    }
+
+    function closeThemePicker() {
+        var overlay = document.getElementById('themePickerOverlay');
+        if (overlay) overlay.classList.remove('open');
     }
 
     function toggleMenu() {
@@ -90,7 +129,7 @@ var App = (function() {
         renderCards('notesGrid', KERNEL_DATA.notes);
         renderCards('practiceGrid', KERNEL_DATA.practice);
         renderCards('libraryGrid', KERNEL_DATA.library);
-        console.log('KERNEL v2.0');
+        console.log('KERNEL v3.0 — 7 themes');
     }
 
     function escapeHtml(text) {
@@ -106,6 +145,9 @@ var App = (function() {
         openNote: openNote,
         closeNote: closeNote,
         toggleTheme: toggleTheme,
+        selectTheme: selectTheme,
+        openThemePicker: openThemePicker,
+        closeThemePicker: closeThemePicker,
         toggleMenu: toggleMenu,
         init: init,
         escapeHtml: escapeHtml,
