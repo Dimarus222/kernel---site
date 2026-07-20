@@ -45,17 +45,18 @@ var App = (function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ===== ФУНКЦИИ ВЫБОРА ТЕМ =====
+    // ===== НОВЫЕ ТЕМЫ =====
     function selectTheme(theme) {
         currentTheme = theme;
         
-        // Убираем все классы тем с body
-        document.body.classList.remove('theme-light', 'theme-matrix', 'theme-amber', 'theme-forest', 'theme-ocean', 'theme-sunset');
+        // Убираем все старые классы тем
+        var themes = ['dark', 'light', 'neon', 'retro', 'glass', 'brutal', 'nature'];
+        themes.forEach(function(t) {
+            document.body.classList.remove(t + '-theme');
+        });
         
-        // Добавляем нужный класс (кроме dark — он по умолчанию)
-        if (theme !== 'dark') {
-            document.body.classList.add('theme-' + theme);
-        }
+        // Добавляем новый класс
+        document.body.classList.add(theme + '-theme');
         
         // Обновляем активный класс в панели выбора
         document.querySelectorAll('.theme-option').forEach(function(el) {
@@ -65,13 +66,13 @@ var App = (function() {
         // Обновляем кнопку темы
         var themeBtn = document.getElementById('themeToggle');
         var icons = {
-            'dark': '🌙',
+            'dark': '🌑',
             'light': '☀️',
-            'matrix': '💚',
-            'amber': '🟡',
-            'forest': '🌿',
-            'ocean': '🌊',
-            'sunset': '🌅'
+            'neon': '💜',
+            'retro': '📜',
+            'glass': '🔮',
+            'brutal': '⬛',
+            'nature': '🌿'
         };
         themeBtn.textContent = icons[theme] || '🎨';
         
@@ -130,7 +131,7 @@ var App = (function() {
         renderCards('notesGrid', KERNEL_DATA.notes);
         renderCards('practiceGrid', KERNEL_DATA.practice);
         renderCards('libraryGrid', KERNEL_DATA.library);
-        console.log('KERNEL v3.0 — 7 themes in one file');
+        console.log('KERNEL v3.0 — 7 unique styles');
     }
 
     function escapeHtml(text) {
