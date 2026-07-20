@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KERNEL — Компьютерная безопасность 10.05.01</title>
     
-    <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark" disabled>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     
-    <!-- Единый файл со всеми темами -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,7 +18,7 @@
                 <span class="logo">KERNEL</span>
                 <span class="logo-sub">10.05.01</span>
             </div>
-            <button class="burger-btn" id="burgerBtn" onclick="App.toggleMenu()" aria-label="Меню">
+            <button class="burger-btn" id="burgerBtn" onclick="App.toggleMenu()">
                 <span></span><span></span><span></span>
             </button>
             <div class="nav-overlay" id="navOverlay" onclick="App.toggleMenu()"></div>
@@ -31,16 +29,15 @@
                     <button class="nav-btn" data-section="library" onclick="App.showSection('library')">Библиотека</button>
                     <button class="nav-btn" data-section="about" onclick="App.showSection('about')">О проекте</button>
                 </nav>
-                <button class="theme-btn" id="themeToggle" onclick="App.openThemePicker()" title="Выбор темы">🎨</button>
+                <button class="theme-btn" id="themeToggle" onclick="App.openThemePicker()">🎨</button>
             </div>
         </div>
     </header>
 
-    <!-- ===== ВЫБОР ТЕМ ===== -->
     <div class="theme-picker-overlay" id="themePickerOverlay">
         <div class="theme-picker-panel">
             <div class="theme-picker-header">
-                <span>🎨 Выбор темы оформления</span>
+                <span>🎨 Выбор стиля</span>
                 <button class="close-picker" onclick="App.closeThemePicker()">✕</button>
             </div>
             <div class="theme-picker-body">
@@ -50,8 +47,8 @@
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">🌙 Тёмная</span>
-                    <span class="theme-desc">Классическая тёмная тема</span>
+                    <span class="theme-name">🌑 Dark</span>
+                    <span class="theme-desc">Минималистичный тёмный</span>
                 </div>
                 <div class="theme-option" data-theme="light" onclick="App.selectTheme('light')">
                     <div class="theme-preview theme-preview-light">
@@ -59,53 +56,53 @@
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">☀️ Светлая</span>
-                    <span class="theme-desc">Классическая светлая тема</span>
+                    <span class="theme-name">☀️ Light</span>
+                    <span class="theme-desc">Минималистичный светлый</span>
                 </div>
-                <div class="theme-option" data-theme="matrix" onclick="App.selectTheme('matrix')">
-                    <div class="theme-preview theme-preview-matrix">
+                <div class="theme-option" data-theme="neon" onclick="App.selectTheme('neon')">
+                    <div class="theme-preview theme-preview-neon">
                         <span class="preview-dot"></span>
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">💚 Matrix</span>
-                    <span class="theme-desc">Киберпанк с зелёным неоном</span>
+                    <span class="theme-name">💜 Neon</span>
+                    <span class="theme-desc">Киберпанк с неоном</span>
                 </div>
-                <div class="theme-option" data-theme="amber" onclick="App.selectTheme('amber')">
-                    <div class="theme-preview theme-preview-amber">
+                <div class="theme-option" data-theme="retro" onclick="App.selectTheme('retro')">
+                    <div class="theme-preview theme-preview-retro">
                         <span class="preview-dot"></span>
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">🟡 Amber</span>
-                    <span class="theme-desc">Тёплая янтарная гамма</span>
+                    <span class="theme-name">📜 Retro</span>
+                    <span class="theme-desc">Винтаж и старина</span>
                 </div>
-                <div class="theme-option" data-theme="forest" onclick="App.selectTheme('forest')">
-                    <div class="theme-preview theme-preview-forest">
+                <div class="theme-option" data-theme="glass" onclick="App.selectTheme('glass')">
+                    <div class="theme-preview theme-preview-glass">
                         <span class="preview-dot"></span>
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">🌿 Forest</span>
-                    <span class="theme-desc">Лесная зелёная атмосфера</span>
+                    <span class="theme-name">🔮 Glass</span>
+                    <span class="theme-desc">Стеклянный эффект</span>
                 </div>
-                <div class="theme-option" data-theme="ocean" onclick="App.selectTheme('ocean')">
-                    <div class="theme-preview theme-preview-ocean">
+                <div class="theme-option" data-theme="brutal" onclick="App.selectTheme('brutal')">
+                    <div class="theme-preview theme-preview-brutal">
                         <span class="preview-dot"></span>
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">🌊 Ocean</span>
-                    <span class="theme-desc">Глубокий океанский синий</span>
+                    <span class="theme-name">⬛ Brutal</span>
+                    <span class="theme-desc">Брутализм</span>
                 </div>
-                <div class="theme-option" data-theme="sunset" onclick="App.selectTheme('sunset')">
-                    <div class="theme-preview theme-preview-sunset">
+                <div class="theme-option" data-theme="nature" onclick="App.selectTheme('nature')">
+                    <div class="theme-preview theme-preview-nature">
                         <span class="preview-dot"></span>
                         <span class="preview-line"></span>
                         <span class="preview-line"></span>
                     </div>
-                    <span class="theme-name">🌅 Sunset</span>
-                    <span class="theme-desc">Тёплые закатные оттенки</span>
+                    <span class="theme-name">🌿 Nature</span>
+                    <span class="theme-desc">Природный</span>
                 </div>
             </div>
         </div>
@@ -126,25 +123,14 @@
         </section>
         <section class="section" id="section-about">
             <h2 class="section-title">О проекте</h2>
-            <div class="note-content" style="max-width: 700px;">
+            <div class="note-content" style="max-width:700px;">
                 <h3>Что такое KERNEL</h3>
-                <p><strong>KERNEL</strong> — образовательный проект о компьютерной безопасности. Здесь собраны конспекты, практические разборы и материалы для студентов направления 10.05.01 «Компьютерная безопасность» и всех, кто интересуется кибербезопасностью.</p>
-                <h3>Кто автор</h3>
+                <p><strong>KERNEL</strong> — образовательный проект о компьютерной безопасности.</p>
+                <h3>Автор</h3>
                 <p><strong>Дмитрий Жданов</strong> — студент СФУ ИКИТ, специальность «Компьютерная безопасность» (10.05.01).</p>
-                <p>Выпускник Канского Морского Кадетского Корпуса с серебряной медалью. Призёр регионального этапа ВсОШ по информационной безопасности (2025, 2026) и по праву (2026).</p>
-                <h3>Что здесь есть</h3>
-                <ul>
-                    <li><strong>Конспекты</strong> — теория по криптографии, сетевым протоколам, архитектуре ОС и нормативной базе.</li>
-                    <li><strong>Практика</strong> — лабораторные работы с рабочим IDE и автоматической проверкой кода.</li>
-                    <li><strong>Библиотека</strong> — подборки книг, ГОСТов и нормативных документов.</li>
-                </ul>
-                <h3>Продукты автора</h3>
-                <ul>
-                    <li><strong>QR Guard Pro</strong> — анализатор безопасности QR-кодов. Проверяет URL через 6 сервисов. <a href="https://qrguard-production-4a89.up.railway.app" target="_blank">Веб-версия</a> · Telegram-бот <a href="https://t.me/KernelSecurityBot" target="_blank">@KernelSecurityBot</a></li>
-                </ul>
                 <h3>Контакты</h3>
-                <p>📢 Telegram-канал: <a href="https://t.me/kernelsfu" target="_blank">@kernelsfu</a></p>
-                <p>🤖 Telegram-бот: <a href="https://t.me/KernelSecurityBot" target="_blank">@KernelSecurityBot</a></p>
+                <p>📢 Telegram: <a href="https://t.me/kernelsfu" target="_blank">@kernelsfu</a></p>
+                <p>🤖 Бот: <a href="https://t.me/KernelSecurityBot" target="_blank">@KernelSecurityBot</a></p>
             </div>
         </section>
         <section class="note-detail" id="noteDetail">
