@@ -34,6 +34,7 @@
         </div>
     </header>
 
+    <!-- ===== ВЫБОР ТЕМ ===== -->
     <div class="theme-picker-overlay" id="themePickerOverlay">
         <div class="theme-picker-panel">
             <div class="theme-picker-header">
@@ -41,31 +42,73 @@
                 <button class="close-picker" onclick="App.closeThemePicker()">✕</button>
             </div>
             <div class="theme-picker-body">
+                <!-- Dark -->
                 <div class="theme-option active" data-theme="dark" onclick="App.selectTheme('dark')">
+                    <div class="theme-preview theme-preview-dark">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">🌑 Dark</span>
                     <span class="theme-desc">Минималистичный тёмный</span>
                 </div>
+                <!-- Light -->
                 <div class="theme-option" data-theme="light" onclick="App.selectTheme('light')">
+                    <div class="theme-preview theme-preview-light">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">☀️ Light</span>
                     <span class="theme-desc">Минималистичный светлый</span>
                 </div>
+                <!-- Neon -->
                 <div class="theme-option" data-theme="neon" onclick="App.selectTheme('neon')">
+                    <div class="theme-preview theme-preview-neon">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">💜 Neon</span>
                     <span class="theme-desc">Киберпанк с неоном</span>
                 </div>
+                <!-- Retro -->
                 <div class="theme-option" data-theme="retro" onclick="App.selectTheme('retro')">
+                    <div class="theme-preview theme-preview-retro">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">📜 Retro</span>
                     <span class="theme-desc">Винтаж и старина</span>
                 </div>
+                <!-- Glass -->
                 <div class="theme-option" data-theme="glass" onclick="App.selectTheme('glass')">
+                    <div class="theme-preview theme-preview-glass">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">🔮 Glass</span>
                     <span class="theme-desc">Стеклянный эффект</span>
                 </div>
+                <!-- Brutal -->
                 <div class="theme-option" data-theme="brutal" onclick="App.selectTheme('brutal')">
+                    <div class="theme-preview theme-preview-brutal">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">⬛ Brutal</span>
                     <span class="theme-desc">Брутализм</span>
                 </div>
+                <!-- Nature -->
                 <div class="theme-option" data-theme="nature" onclick="App.selectTheme('nature')">
+                    <div class="theme-preview theme-preview-nature">
+                        <span class="preview-dot"></span>
+                        <span class="preview-line"></span>
+                        <span class="preview-line"></span>
+                    </div>
                     <span class="theme-name">🌿 Nature</span>
                     <span class="theme-desc">Природный</span>
                 </div>
