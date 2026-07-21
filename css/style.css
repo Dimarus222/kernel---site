@@ -576,6 +576,71 @@ body {
 }
 .note-content a:hover { color: var(--text); border-bottom-color: var(--text-secondary); }
 
+/* ===== ТАБЛИЦЫ В КОНТЕНТЕ =====
+   Единый цветовой диапазон темы: никакой зебра-раскраски по умолчанию,
+   текст всегда var(--text)/var(--text-secondary), фон только двух видов —
+   шапка и тело, оба привязаны к переменным темы. */
+.note-content .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+.note-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    line-height: 1.6;
+    background: var(--bg-card);
+    color: var(--text);
+    font-family: var(--font-content, 'Inter', sans-serif);
+}
+.note-content table caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 10px 16px 0;
+}
+.note-content thead th {
+    background: var(--table-head-bg, var(--bg-secondary));
+    color: var(--table-head-text, var(--text));
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+}
+.note-content tbody td,
+.note-content tbody th {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    background: var(--bg-card);
+    vertical-align: top;
+}
+/* Все строки тела — один и тот же фон, БЕЗ чередования */
+.note-content tbody tr { background: transparent; }
+.note-content tbody tr:last-child td { border-bottom: none; }
+.note-content tbody tr:hover td { background: var(--table-row-hover, var(--bg-secondary)); }
+.note-content table code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 12.5px;
+    background: var(--code-bg);
+    color: var(--text);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+}
+.note-content tbody td:first-child,
+.note-content tbody th:first-child { font-weight: 600; }
+
 .code-block {
     position: relative;
     margin: 20px 0;
@@ -583,6 +648,19 @@ body {
     overflow: hidden;
     border: 1px solid var(--border);
     background: var(--code-bg);
+}
+.code-block-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
 }
 .code-block pre {
     margin: 0;
@@ -593,7 +671,23 @@ body {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     white-space: pre-wrap;
     word-break: break-word;
+    color: var(--code-text, var(--text));
 }
+.code-block code { color: inherit; }
+
+/* Базовая (тема Dark) палитра токенов подсветки — переопределяется в каждой теме ниже */
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-section, .hljs-link { color: var(--code-keyword, #ff7ab2); }
+.hljs-string, .hljs-attr, .hljs-template-tag, .hljs-template-variable { color: var(--code-string, #a5d6ff); }
+.hljs-comment, .hljs-quote, .hljs-deletion { color: var(--code-comment, #6e7681); font-style: italic; }
+.hljs-number, .hljs-regexp, .hljs-meta { color: var(--code-number, #ffb86c); }
+.hljs-title, .hljs-function, .hljs-title.function_ { color: var(--code-function, #82e6c1); }
+.hljs-built_in, .hljs-type, .hljs-class .hljs-title { color: var(--code-type, #79c0ff); }
+.hljs-variable, .hljs-name, .hljs-tag { color: var(--code-variable, #ffa198); }
+.hljs-symbol, .hljs-bullet, .hljs-addition { color: var(--code-symbol, #7ee787); }
+.hljs-attribute, .hljs-property { color: var(--code-attr, #d2a8ff); }
+.hljs-operator, .hljs-punctuation { color: var(--code-op, var(--code-text, var(--text))); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
 
 .section { display: none; }
 .section.visible { display: block; animation: fadeIn 0.3s ease; }
@@ -669,6 +763,22 @@ body {
     --gradient-shadow: 0 4px 24px rgba(61,220,151,0.2);
     --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    /* Таблицы */
+    --table-head-bg: #1f2733;
+    --table-head-text: #d9e2ec;
+    --table-row-hover: #202838;
+    /* Подсветка кода — контраст проверен на фоне --code-bg (#0f1620) */
+    --code-text: #d9e2ec;
+    --code-keyword: #ff7ab2;
+    --code-string: #a5d6ff;
+    --code-comment: #6e7681;
+    --code-number: #ffb86c;
+    --code-function: #82e6c1;
+    --code-type: #79c0ff;
+    --code-variable: #ffa198;
+    --code-symbol: #7ee787;
+    --code-attr: #d2a8ff;
+    --code-op: #d9e2ec;
 }
 body { background: var(--bg); color: var(--text); }
 
@@ -700,12 +810,28 @@ body.light-theme {
     --gradient-shadow: 0 10px 30px rgba(37,99,235,0.18);
     --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --table-head-bg: #eef0f4;
+    --table-head-text: #171717;
+    --table-row-hover: #eef2fb;
+    /* Тёмная палитра — фон кода светлый (#f5f5f5), светлые токены здесь нечитаемы */
+    --code-text: #24292e;
+    --code-keyword: #cf222e;
+    --code-string: #0a3069;
+    --code-comment: #6e7781;
+    --code-number: #953800;
+    --code-function: #8250df;
+    --code-type: #116329;
+    --code-variable: #b35900;
+    --code-symbol: #116329;
+    --code-attr: #0550ae;
+    --code-op: #24292e;
 }
 body.light-theme {
     background: linear-gradient(180deg, #ffffff 0%, #f7f8fc 100%);
     color: var(--text);
 }
 body.light-theme .card { border-radius: 16px; }
+body.light-theme .note-content .table-wrap { border-radius: 14px; }
 body.light-theme .card:hover { box-shadow: 0 20px 40px rgba(37,99,235,0.12), 0 4px 10px rgba(15,23,42,0.06); }
 body.light-theme .theme-btn,
 body.light-theme .back-btn,
@@ -734,6 +860,20 @@ body.neon-theme {
     --gradient-shadow: 0 4px 20px rgba(255,0,255,0.4);
     --font: 'Orbitron', 'Share Tech Mono', 'Inter', monospace;
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --table-head-bg: #22225a;
+    --table-head-text: #ff88ff;
+    --table-row-hover: #23234f;
+    --code-text: #e0e0ff;
+    --code-keyword: #ff6bff;
+    --code-string: #7dfaff;
+    --code-comment: #7a7ab0;
+    --code-number: #ffd166;
+    --code-function: #66ffcf;
+    --code-type: #7dc8ff;
+    --code-variable: #ff9ecf;
+    --code-symbol: #9dff8a;
+    --code-attr: #c9a3ff;
+    --code-op: #e0e0ff;
 }
 body.neon-theme { background: var(--bg); color: var(--text); }
 body.neon-theme .header { border-color: #3333aa; }
@@ -758,6 +898,10 @@ body.neon-theme .tag {
 }
 body.neon-theme .note-meta { border-color: #3333aa; }
 body.neon-theme .code-block { border-color: #ff00ff; background: rgba(255,0,255,0.05); box-shadow: 0 0 20px rgba(255,0,255,0.08); }
+body.neon-theme .note-content .table-wrap { border-color: #ff00ff; box-shadow: 0 0 16px rgba(255,0,255,0.12); }
+body.neon-theme .note-content thead th { border-bottom: 2px solid #ff00ff; text-shadow: 0 0 6px rgba(255,0,255,0.4); }
+body.neon-theme .note-content tbody td, body.neon-theme .note-content tbody th { border-bottom-color: #2a2a6a; }
+body.neon-theme .note-content table code { border-color: #ff00ff; box-shadow: 0 0 6px rgba(255,0,255,0.15); }
 body.neon-theme .back-btn { border-color: #ff00ff; color: #ff88ff; }
 body.neon-theme .back-btn:hover { background: rgba(255,0,255,0.1); box-shadow: 0 0 16px rgba(255,0,255,0.3); }
 body.neon-theme .nav-btn.active { border-color: #ff00ff; box-shadow: 0 0 12px rgba(255,0,255,0.25); }
@@ -798,6 +942,21 @@ body.retro-theme {
     --gradient-shadow: 0 4px 20px rgba(139,69,19,0.25);
     --font: 'Special Elite', 'Courier Prime', 'Courier New', serif;
     --font-content: 'Courier Prime', 'Georgia', 'Times New Roman', serif;
+    --table-head-bg: #dcc8a8;
+    --table-head-text: #3a2a1a;
+    --table-row-hover: #ece0c8;
+    /* Фон кода светлый бежевый — нужны тёмные тона, не пастель */
+    --code-text: #3a2a1a;
+    --code-keyword: #8b1a1a;
+    --code-string: #2f5233;
+    --code-comment: #8b7355;
+    --code-number: #8b4513;
+    --code-function: #4a3b8b;
+    --code-type: #5c4033;
+    --code-variable: #7a4a1a;
+    --code-symbol: #2f5233;
+    --code-attr: #5c3a7a;
+    --code-op: #3a2a1a;
 }
 
 /* Текстура бумаги + виньетка по краям, поверх фона */
@@ -820,6 +979,10 @@ body.retro-theme .tag { border-color: #c8b898; background: #dcc8b0; color: #5c40
 body.retro-theme .note-meta { border-color: #c8b898; }
 body.retro-theme .code-block { border-color: #c8b898; background: #e8dcc4; }
 body.retro-theme .code-block pre { font-family: 'Courier Prime', 'Courier New', monospace; }
+body.retro-theme .note-content .table-wrap { border-color: #c8b898; }
+body.retro-theme .note-content table { font-family: 'Courier Prime', monospace; }
+body.retro-theme .note-content thead th { border-bottom: 2px solid #8b7355; }
+body.retro-theme .note-content table code { font-family: 'Courier Prime', monospace; }
 body.retro-theme .back-btn { border-color: #8b7355; color: #5c4033; font-family: 'Courier Prime', monospace; }
 body.retro-theme .back-btn:hover { background: #dcc8b0; }
 body.retro-theme .logo { letter-spacing: 4px; }
@@ -847,6 +1010,20 @@ body.glass-theme {
     --gradient-shadow: 0 4px 30px rgba(96,165,250,0.18);
     --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
     --font-content: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --table-head-bg: rgba(255,255,255,0.1);
+    --table-head-text: #e8edf5;
+    --table-row-hover: rgba(96,165,250,0.08);
+    --code-text: #e8edf5;
+    --code-keyword: #93c5fd;
+    --code-string: #86efac;
+    --code-comment: #7c8ba1;
+    --code-number: #fcd34d;
+    --code-function: #c4b5fd;
+    --code-type: #67e8f9;
+    --code-variable: #fda4af;
+    --code-symbol: #86efac;
+    --code-attr: #d8b4fe;
+    --code-op: #e8edf5;
 }
 body.glass-theme {
     background:
@@ -882,6 +1059,10 @@ body.glass-theme .card::before { background: linear-gradient(135deg, rgba(96,165
 body.glass-theme .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); color: #94a3b8; backdrop-filter: blur(6px); }
 body.glass-theme .note-meta { border-color: rgba(255,255,255,0.08); }
 body.glass-theme .code-block { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); backdrop-filter: blur(10px); }
+body.glass-theme .note-content .table-wrap { border-color: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
+body.glass-theme .note-content table { background: rgba(255,255,255,0.04); }
+body.glass-theme .note-content tbody td, body.glass-theme .note-content tbody th { background: transparent; }
+body.glass-theme .note-content table code { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
 body.glass-theme .back-btn { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: #94a3b8; backdrop-filter: blur(8px); }
 body.glass-theme .back-btn:hover { background: rgba(255,255,255,0.08); color: #e8edf5; }
 body.glass-theme .nav-btn.active { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
@@ -909,6 +1090,21 @@ body.brutal-theme {
     --gradient-shadow: none;
     --font: 'Space Mono', 'IBM Plex Mono', 'Courier New', monospace;
     --font-content: 'Space Mono', 'Times New Roman', serif;
+    --table-head-bg: #000000;
+    --table-head-text: #ffffff;
+    --table-row-hover: #f0f0f0;
+    /* Монохром + один акцент, как и весь стиль темы */
+    --code-text: #000000;
+    --code-keyword: #ff0000;
+    --code-string: #333333;
+    --code-comment: #777777;
+    --code-number: #000000;
+    --code-function: #ff0000;
+    --code-type: #000000;
+    --code-variable: #333333;
+    --code-symbol: #ff0000;
+    --code-attr: #000000;
+    --code-op: #000000;
 }
 body.brutal-theme { background: var(--bg); color: var(--text); }
 body.brutal-theme .header { border-bottom: 4px solid #000000; }
@@ -931,6 +1127,10 @@ body.brutal-theme .card::after { display: none; }
 body.brutal-theme .tag { border-radius: 0; background: #000000; color: #ffffff; border: none; }
 body.brutal-theme .note-meta { border-bottom: 3px solid #000000; }
 body.brutal-theme .code-block { border: 3px solid #000000; border-radius: 0; background: #e8e8e8; box-shadow: 5px 5px 0 #000; }
+body.brutal-theme .note-content .table-wrap { border: 3px solid #000; border-radius: 0; box-shadow: 5px 5px 0 #000; }
+body.brutal-theme .note-content thead th { border-bottom: 3px solid #000; }
+body.brutal-theme .note-content tbody td, body.brutal-theme .note-content tbody th { border-bottom: 1px solid #000; }
+body.brutal-theme .note-content table code { border-radius: 0; border-color: #000; }
 body.brutal-theme .back-btn { border: 3px solid #000000; border-radius: 0; color: #000000; background: transparent; box-shadow: 4px 4px 0 #000; }
 body.brutal-theme .back-btn:hover { background: #000000; color: #ffffff; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #ff0000; }
 body.brutal-theme .nav-btn.active { border: 2px solid #000000; border-radius: 0; background: #000000; color: #ffffff; }
@@ -965,6 +1165,20 @@ body.nature-theme {
     --gradient-shadow: 0 4px 20px rgba(74,222,128,0.25);
     --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
     --font-content: 'Georgia', 'Times New Roman', serif;
+    --table-head-bg: #21351f;
+    --table-head-text: #dcfce7;
+    --table-row-hover: #1f331f;
+    --code-text: #dcfce7;
+    --code-keyword: #f0abfc;
+    --code-string: #bef264;
+    --code-comment: #5c8a5c;
+    --code-number: #fdba74;
+    --code-function: #67e8a9;
+    --code-type: #7dd3fc;
+    --code-variable: #fca5a5;
+    --code-symbol: #86efac;
+    --code-attr: #c4b5fd;
+    --code-op: #dcfce7;
 }
 body.nature-theme {
     background:
@@ -985,6 +1199,9 @@ body.nature-theme .card:hover { box-shadow: 0 10px 34px rgba(74,222,128,0.18); }
 body.nature-theme .tag { border-color: #1a3a1a; background: #1a3a1a; color: #86efac; border-radius: 12px 4px 12px 4px; }
 body.nature-theme .note-meta { border-color: #1a3a1a; }
 body.nature-theme .code-block { border-color: #1a3a1a; background: #0a120a; border-radius: 16px 4px 16px 4px; }
+body.nature-theme .note-content .table-wrap { border-color: #1a3a1a; border-radius: 16px 4px 16px 4px; }
+body.nature-theme .note-content thead th { border-bottom-color: #2a5a2a; }
+body.nature-theme .note-content table code { border-radius: 8px 2px; }
 body.nature-theme .back-btn { border-color: #1a3a1a; color: #86efac; border-radius: 16px 4px; }
 body.nature-theme .back-btn:hover { background: #1a3a1a; color: #dcfce7; }
 body.nature-theme .nav-btn.active { border-color: #4ade80; }
@@ -1097,4 +1314,4 @@ body.nature-theme .materials-counter { border-radius: 16px 4px 16px 4px; }
 @media (min-width: 1800px) {
     .grid { grid-template-columns: repeat(4, 1fr); }
     .note-content { max-width: 900px; font-size: 17px; }
-   }
+}
