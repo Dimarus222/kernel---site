@@ -22,6 +22,8 @@ body {
     flex-direction: column;
     transition: background 0.5s ease, color 0.5s ease;
     line-height: 1.6;
+    overflow-x: hidden; /* страховка: что бы ни оказалось внутри контента (широкая таблица, длинная строка кода без переносов), сама страница вбок не поедет — скроллиться сможет только то, что явно на это рассчитано (см. .table-wrap и .code-block) */
+    width: 100%;
 }
 
 /* ===== БАЗОВАЯ СТРУКТУРА ===== */
@@ -579,22 +581,46 @@ body {
 /* ===== ТАБЛИЦЫ В КОНТЕНТЕ =====
    Единый цветовой диапазон темы: никакой зебра-раскраски по умолчанию,
    текст всегда var(--text)/var(--text-secondary), фон только двух видов —
-   шапка и тело, оба привязаны к переменным темы. */
-.note-content .table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    margin: 20px 0;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-}
+   шапка и тело, оба привязаны к переменным темы.
+
+   ВАЖНО ПРО СКРОЛЛ: раньше горизонтальный скролл работал, только если
+   таблицу вручную оборачивали в <div class="table-wrap">. Если в каком-то
+   конспекте эта обёртка отсутствует (другой источник разметки, ручной
+   HTML и т.п.) — overflow-x было не на чем сработать, и широкая таблица
+   раздвигала .note-content, а за ним и весь <body>, из-за чего "уезжала"
+   вбок вся страница. Теперь сама <table> скроллится по горизонтали САМА
+   ПО СЕБЕ (display:block + overflow-x:auto — браузер всё равно строит
+   анонимную табличную сетку внутри для thead/tbody/tr/td, так что колонки
+   не разъезжаются), независимо от того, обёрнута она в .table-wrap или нет. */
 .note-content table {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-collapse: collapse;
     font-size: 13.5px;
     line-height: 1.6;
     background: var(--bg-card);
     color: var(--text);
     font-family: var(--font-content, 'Inter', sans-serif);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+/* Если разметка всё же использует обёртку — не дублируем рамку дважды */
+.note-content .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+.note-content .table-wrap table {
+    border: none;
+    border-radius: 0;
+    margin: 0;
 }
 .note-content table caption {
     caption-side: top;
@@ -623,6 +649,7 @@ body {
     color: var(--text);
     background: var(--bg-card);
     vertical-align: top;
+    white-space: normal;
 }
 /* Все строки тела — один и тот же фон, БЕЗ чередования */
 .note-content tbody tr { background: transparent; }
@@ -1314,4 +1341,4 @@ body.nature-theme .materials-counter { border-radius: 16px 4px 16px 4px; }
 @media (min-width: 1800px) {
     .grid { grid-template-columns: repeat(4, 1fr); }
     .note-content { max-width: 900px; font-size: 17px; }
-}
+                                   }
