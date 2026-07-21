@@ -33,9 +33,33 @@ var App = (function() {
         document.getElementById('noteDetail').classList.add('visible');
         document.getElementById('detailTitle').textContent = item.title;
         document.getElementById('detailMeta').textContent = item.date + ' · ' + (item.tags || []).join(', ');
-        document.getElementById('detailContent').innerHTML = typeof item.content === 'function' ? item.content() : item.content;
-        document.querySelectorAll('#detailContent pre code').forEach(function(block) { hljs.highlightElement(block); });
+        var content = document.getElementById('detailContent');
+        content.innerHTML = typeof item.content === 'function' ? item.content() : item.content;
+        wrapWideTables(content);
+        if (typeof hljs !== 'undefined') {
+            content.querySelectorAll('pre code').forEach(function(block) { hljs.highlightElement(block); });
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Гарантированно оборачивает КАЖДУЮ таблицу в контейнер с горизонтальным
+    // скроллом — независимо от того, какие классы/инлайн-стили у неё заданы
+    // в конкретном конспекте (ws-table, ws-bit-table и т.п.). Раньше скролл
+    // держался на CSS-трюке "display:block на самой <table>", который в паре
+    // с широкими таблицами (например ws-bit-table в конспекте по Wireshark)
+    // создавал два вложенных скролл-контейнера сразу — из-за этого браузер
+    // путал, что именно скроллить, и вместо таблицы начинала скроллиться
+    // вся страница вбок. Явная обёртка через JS убирает эту неоднозначность
+    // раз и навсегда, для любого текущего и будущего конспекта.
+    function wrapWideTables(container) {
+        if (!container) return;
+        container.querySelectorAll('table').forEach(function(table) {
+            if (table.closest('.table-wrap')) return; // уже обёрнута вручную в контенте
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            table.parentNode.insertBefore(wrap, table);
+            wrap.appendChild(table);
+        });
     }
 
     function closeNote() {
